@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+#include <bmi.h>
 struct Posilek {
 	char nazwa_posilku[100];
 	int kcal;

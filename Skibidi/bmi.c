@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+
 float obliczTDEE(char plec, int wiek, float wzrost, float waga, int tryb_zycia) {
     float bmr;
     if (plec == 'M' || plec == 'm')
