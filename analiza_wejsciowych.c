@@ -9,9 +9,14 @@ static GtkWidget *window3;
 static GtkWidget *age;
 static GtkWidget *weight;
 static GtkWidget *height;
-
+static GtkWidget *man;
+static GtkWidget *woman;
+static GtkWidget *tryb;
+static GtkWidget *tryb1;
+static GtkWidget *tryb2;
+static GtkWidget *tryb3;
 int main(int argc, char **argv) {
-    GtkWidget *window, *grid;
+    GtkWidget *window, *grid, *desc, *desc1;
     gtk_init(&argc, &argv);
 
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -37,6 +42,30 @@ int main(int argc, char **argv) {
 
     window3 = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(grid), window3, 1, 2, 1, 1);
+
+    desc = gtk_label_new("Jaka jest twoja plec");
+    gtk_grid_attach(GTK_GRID(grid), desc, 0, 3, 1, 1);
+
+    man = gtk_check_button_new_with_label("Męzczyzna");
+    gtk_grid_attach(GTK_GRID(grid), man, 1, 3, 1, 1);
+
+    woman = gtk_check_button_new_with_label("Kobieta");
+    gtk_grid_attach(GTK_GRID(grid), woman, 1, 4, 1, 1);
+
+    desc1 = gtk_label_new("Tryb zycia");
+    gtk_grid_attach(GTK_GRID(grid), desc1, 0, 5, 1, 1);
+
+    tryb = gtk_check_button_new_with_label("Siedzacy");
+    gtk_grid_attach(GTK_GRID(grid), tryb, 1, 5, 1, 1);
+
+    tryb1 = gtk_check_button_new_with_label("Niska aktywnosc");
+    gtk_grid_attach(GTK_GRID(grid), tryb1, 1, 6, 1, 1);
+
+    tryb2 = gtk_check_button_new_with_label("Srednia aktywnosc");
+    gtk_grid_attach(GTK_GRID(grid), tryb2, 1, 7, 1, 1);
+
+    tryb3 = gtk_check_button_new_with_label("Wysoka aktywnosc");
+    gtk_grid_attach(GTK_GRID(grid), tryb3, 1, 8, 1, 1);
 
     gtk_widget_show_all(window);
     gtk_main();
