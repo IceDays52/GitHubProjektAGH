@@ -10,4 +10,4 @@ float obliczTDEE(char plec, int wiek, float wzrost, float waga, int tryb_zycia) 
 
     float mnoznik[] = { 1.2, 1.375, 1.55, 1.725 };
     return bmr * mnoznik[tryb_zycia];
-}
+}   

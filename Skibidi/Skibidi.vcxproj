@@ -128,9 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bmi.c" />
-    <ClCompile Include="kaka.cpp" />
     <ClCompile Include="tata.c" />
-    <ClCompile Include="trala.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bmi.h" />

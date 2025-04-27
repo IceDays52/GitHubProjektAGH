@@ -1,9 +1,2 @@
 ﻿  tata.c
-C:\skibidi\Skibidi\tata.c(13,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\skibidi\Skibidi\tata.c(35,2): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\skibidi\Skibidi\tata.c(38,2): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\skibidi\Skibidi\tata.c(41,2): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\skibidi\Skibidi\tata.c(44,2): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  trala.c
-c1 : fatal error C1083: Nie można otworzyć pliku źródło: 'trala.c': No such file or directory
-  Generowanie kodu...
+C:\skibidi\Skibidi\tata.c(4,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'bmi.h': No such file or directory

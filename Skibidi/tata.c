@@ -1,48 +1,70 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
-#include "bmi.h"
+#include <bmi.h>
 
 struct Posilek {
-	char nazwa_posilku[100];
-	int kcal;
-	float bialko;
-	float tluszcz;
-	float wegle;
+    char nazwa_posilku[100];
+    int kcal;
+    float bialko;
+    float tluszcz;
+    float wegle;
 };
+
 struct Posilek sniadania[] = {
-	{"Owsianka z owocami", 350, 10.5, 8.2, 55.0},
-	{"Jajecznica z warzywami", 300, 20.0, 22.0, 5.0},
-	{"Jogurt naturalny z musli", 320, 15.0, 10.0, 40.0}
+    {"Owsianka z owocami", 350, 10.5f, 8.2f, 55.0f},
+    {"Jajecznica z warzywami", 300, 20.0f, 22.0f, 5.0f},
+    {"Jogurt naturalny z musli", 320, 15.0f, 10.0f, 40.0f}
 };
+
 struct Posilek obiady[] = {
-	{"Pierœ z kurczaka z ry¿em i warzywami", 500, 35.0, 15.0, 50.0},
-	{"£osoœ z kasz¹ i broku³ami", 550, 40.0, 25.0, 35.0},
-	{"Gulasz warzywny z ciecierzyc¹", 480, 20.0, 18.0, 55.0}
+    {"Pierœ z kurczaka z ry¿em i warzywami", 500, 35.0f, 15.0f, 50.0f},
+    {"£osoœ z kasz¹ i broku³ami", 550, 40.0f, 25.0f, 35.0f},
+    {"Gulasz warzywny z ciecierzyc¹", 480, 20.0f, 18.0f, 55.0f}
 };
 
 struct Posilek kolacje[] = {
-	{"Kanapki z jajkiem i warzywami", 300, 15.0, 12.0, 30.0},
-	{"Sa³atka z tuñczykiem", 320, 25.0, 15.0, 10.0},
-	{"Zupa krem z dyni z grzankami", 280, 10.0, 10.0, 35.0}
+    {"Kanapki z jajkiem i warzywami", 300, 15.0f, 12.0f, 30.0f},
+    {"Sa³atka z tuñczykiem", 320, 25.0f, 15.0f, 10.0f},
+    {"Zupa krem z dyni z grzankami", 280, 10.0f, 10.0f, 35.0f}
 };
-enum Aktywnosc { SIEDZACY = 1, NISKI = 2, SREDNI = 3, WYSOKI = 4 };
+
+enum Aktywnosc { SIEDZACY = 1, NISKI, SREDNI, WYSOKI };
 
 int main() {
-	char gender;
-	int wiek;
-	float  weight, height;
-	printf("Podaj p³eæ (M/K): ");
-	scanf(" %c", &gender);
+    char gender;
+    int wiek;
+    float weight, height;
 
-	printf("Podaj wiek: ");
-	scanf("%d", &wiek);
+    printf("Podaj p³eæ (M/K): ");
+    if (scanf(" %c", &gender) != 1) {
+        printf("B³¹d podczas wczytywania p³ci.\n");
+        return 1;
+    }
 
-	printf("Podaj wzrost (cm): ");
-	scanf("%f", &height);
+    printf("Podaj wiek: ");
+    if (scanf("%d", &wiek) != 1) {
+        printf("B³¹d podczas wczytywania wieku.\n");
+        return 1;
+    }
 
-	printf("Podaj wagê (kg): ");
-	scanf("%f", &weight);
-	return 0;
+    printf("Podaj wzrost (cm): ");
+    if (scanf("%f", &height) != 1) {
+        printf("B³¹d podczas wczytywania wzrostu.\n");
+        return 1;
+    }
 
+    printf("Podaj wagê (kg): ");
+    if (scanf("%f", &weight) != 1) {
+        printf("B³¹d podczas wczytywania wagi.\n");
+        return 1;
+    }
 
+    printf("\nDane u¿ytkownika:\n");
+    printf("P³eæ: %c\n", gender);
+    printf("Wiek: %d lat\n", wiek);
+    printf("Wzrost: %.1f cm\n", height);
+    printf("Waga: %.1f kg\n", weight);
+
+    return 0;
 }
