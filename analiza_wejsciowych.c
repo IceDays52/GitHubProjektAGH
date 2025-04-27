@@ -15,8 +15,10 @@ static GtkWidget *tryb;
 static GtkWidget *tryb1;
 static GtkWidget *tryb2;
 static GtkWidget *tryb3;
+static GtkWidget *window, *grid, *desc, *desc1, *button;
+void funkcj(void);
 int main(int argc, char **argv) {
-    GtkWidget *window, *grid, *desc, *desc1;
+    
     gtk_init(&argc, &argv);
 
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -67,6 +69,14 @@ int main(int argc, char **argv) {
     tryb3 = gtk_check_button_new_with_label("Wysoka aktywnosc");
     gtk_grid_attach(GTK_GRID(grid), tryb3, 1, 8, 1, 1);
 
+    button = gtk_button_new_with_label("Wyślij dane");
+    gtk_grid_attach(GTK_GRID(grid), button, 1, 9, 1, 1);
+    g_signal_connect(button, "clicked", G_CALLBACK(funkcj), NULL);
+
     gtk_widget_show_all(window);
     gtk_main();
+}
+
+void funkcj(){
+    printf("test wywolania funkcji");
 }
