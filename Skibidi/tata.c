@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include <bmi.h>
+#include "bmi.h"
+
 struct Posilek {
 	char nazwa_posilku[100];
 	int kcal;
@@ -24,3 +25,24 @@ struct Posilek kolacje[] = {
 	{"Sa³atka z tuñczykiem", 320, 25.0, 15.0, 10.0},
 	{"Zupa krem z dyni z grzankami", 280, 10.0, 10.0, 35.0}
 };
+enum Aktywnosc { SIEDZACY = 1, NISKI = 2, SREDNI = 3, WYSOKI = 4 };
+
+int main() {
+	char gender;
+	int wiek;
+	float  weight, height;
+	printf("Podaj p³eæ (M/K): ");
+	scanf(" %c", &gender);
+
+	printf("Podaj wiek: ");
+	scanf("%d", &wiek);
+
+	printf("Podaj wzrost (cm): ");
+	scanf("%f", &height);
+
+	printf("Podaj wagê (kg): ");
+	scanf("%f", &weight);
+	return 0;
+
+
+}
