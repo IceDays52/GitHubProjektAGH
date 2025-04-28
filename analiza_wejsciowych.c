@@ -13,16 +13,21 @@ static GtkWidget *tryb1;
 static GtkWidget *tryb2;
 static GtkWidget *tryb3;
 static GtkWidget *window, *grid, *desc, *desc1, *button;
+
+typedef struct {
+    GtkWidget *age_res;
+    GtkWidget *weight_res;
+    GtkWidget *height_res;
+    char *sex;
+    char *lifestyle;
+} dane_struktury;
+
 void funkcj(GtkWidget *widget, gpointer data);
+void button_toggle(GtkWidget *widget, gpointer data);
+
 int main(int argc, char **argv) {
     gtk_init(&argc, &argv);
-    typedef struct {
-        GtkWidget *age_res;
-        GtkWidget *weight_res;
-        GtkWidget *height_res;
-        int sex;
-        int lifestyle;
-    } dane_struktury;
+
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
@@ -66,19 +71,44 @@ int main(int argc, char **argv) {
     data->age_res = age_res;
     data->weight_res = weight_res;
     data->height_res = height_res;
+    data->sex = "0";
+    g_signal_connect(man, "toggled", G_CALLBACK(button_toggle), data);
+    g_signal_connect(woman, "toggled", G_CALLBACK(button_toggle), data);
+    g_signal_connect(tryb, "toggled", G_CALLBACK(button_toggle), data);
+    g_signal_connect(tryb1, "toggled", G_CALLBACK(button_toggle), data);
+    g_signal_connect(tryb2, "toggled", G_CALLBACK(button_toggle), data);
+    g_signal_connect(tryb3, "toggled", G_CALLBACK(button_toggle), data);
 
 
 
 
     button = gtk_button_new_with_label("Wyślij dane");
     gtk_grid_attach(GTK_GRID(grid), button, 1, 9, 1, 1);
-    g_signal_connect(button, "clicked", G_CALLBACK(funkcj), height_res);
+    g_signal_connect(button, "clicked", G_CALLBACK(funkcj), data);
 
     gtk_widget_show_all(window);
-    gtk_main();dd
+    gtk_main();
+}
+
+void button_toggle(GtkWidget *widget, gpointer data) {
+    dane_struktury *data_p = (dane_struktury *) data;
+    if (widget == man) {data_p->sex = "M";}
+
+    if (widget == woman) {data_p->sex = "K";}
+
+    if (widget == tryb) {data_p->lifestyle = "Siedzacy";}
+
+    if (widget == tryb1) {data_p->lifestyle = "Niska aktywnosc";}
+
+    if (widget == tryb2) {data_p->lifestyle = "Srednia aktywnosc";}
+
+    if (widget == tryb3) {data_p->lifestyle = "Wysoka aktywnosc";}
 }
 
 void funkcj(GtkWidget *widget, gpointer data){
-    const gchar *tekst = gtk_entry_get_text(GTK_ENTRY(data));
-    g_print("test wywolania funkcji %s", tekst);
+    dane_struktury *data_p = (dane_struktury *) data;
+    const gchar *wiek = gtk_entry_get_text(GTK_ENTRY(data_p->age_res));
+    const gchar *waga = gtk_entry_get_text(GTK_ENTRY(data_p->weight_res));
+    const gchar *wzrost = gtk_entry_get_text(GTK_ENTRY(data_p->height_res));
+    g_print("Wiek: %s \nWaga: %s \nWzrost: %s \nPłeć: %s \n Tryb zycia: %s", wiek, waga, wzrost, data_p->sex, data_p->lifestyle);
 }
