@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
-#include <bmi.h>
+#include <locale.h>
 
 struct Posilek {
     char nazwa_posilku[100];
@@ -32,6 +32,7 @@ struct Posilek kolacje[] = {
 enum Aktywnosc { SIEDZACY = 1, NISKI, SREDNI, WYSOKI };
 
 int main() {
+    setlocale(LC_CTYPE, "Polish");
     char gender;
     int wiek;
     float weight, height;
