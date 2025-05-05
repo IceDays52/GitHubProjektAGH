@@ -1,5 +1,0 @@
-﻿  cw5.c
-C:\Users\Arek\Documents\rata\Skibidi\Kraszak\ProjektC\ProjektC\cw5.c(8,8): warning C4244: "funkcja": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-C:\Users\Arek\Documents\rata\Skibidi\Kraszak\ProjektC\ProjektC\cw5.c(76,11): warning C4244: "funkcja": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-C:\Users\Arek\Documents\rata\Skibidi\Kraszak\ProjektC\ProjektC\cw5.c(100,11): warning C4244: "funkcja": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-  ProjektC.vcxproj -> C:\Users\Arek\Documents\rata\Skibidi\Kraszak\ProjektC\x64\Debug\ProjektC.exe
