@@ -1,2 +1,4 @@
 ﻿  tata.c
+C:\Users\Arek\Documents\rata\Skibidi\Skibidi\tata.c(33,5): warning C4013: niezdefiniowany "srand"; przy założeniu, że extern zwraca int
+C:\Users\Arek\Documents\rata\Skibidi\Skibidi\tata.c(41,27): warning C4013: niezdefiniowany "rand"; przy założeniu, że extern zwraca int
   Skibidi.vcxproj -> C:\Users\Arek\Documents\rata\Skibidi\x64\Debug\Skibidi.exe

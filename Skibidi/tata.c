@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <locale.h>
-
+#include <time.h>
 struct Posilek {
     char nazwa_posilku[100];
     int kcal;
@@ -29,13 +29,44 @@ struct Posilek kolacje[] = {
     {"Zupa krem z dyni z grzankami", 280, 10.0f, 10.0f, 35.0f}
 };
 
+void generujJadlospis(int czas) {
+    srand(time(NULL));  
+
+    printf("\nZalecany jad³ospis na %d dni:\n", czas);
+
+    for (int i = 1; i <= czas; i++) {
+        printf("\nDzieñ %d:\n", i);
+
+       
+        int i_sniadanie = rand() % (sizeof(sniadania) / sizeof(sniadania[0]));
+        int i_obiad = rand() % (sizeof(obiady) / sizeof(obiady[0]));
+        int i_kolacja = rand() % (sizeof(kolacje) / sizeof(kolacje[0]));
+
+       
+        struct Posilek sn = sniadania[i_sniadanie];
+        struct Posilek ob = obiady[i_obiad];
+        struct Posilek ko = kolacje[i_kolacja];
+
+        
+        printf("  Œniadanie: %s (kcal: %d, bia³ko: %.1fg, t³uszcz: %.1fg, wêgle: %.1fg)\n",
+            sn.nazwa_posilku, sn.kcal, sn.bialko, sn.tluszcz, sn.wegle);
+
+        printf("  Obiad: %s (kcal: %d, bia³ko: %.1fg, t³uszcz: %.1fg, wêgle: %.1fg)\n",
+            ob.nazwa_posilku, ob.kcal, ob.bialko, ob.tluszcz, ob.wegle);
+
+        printf("  Kolacja: %s (kcal: %d, bia³ko: %.1fg, t³uszcz: %.1fg, wêgle: %.1fg)\n",
+            ko.nazwa_posilku, ko.kcal, ko.bialko, ko.tluszcz, ko.wegle);
+    }
+}
+
 enum Aktywnosc { SIEDZACY = 1, NISKI, SREDNI, WYSOKI };
 
 int main() {
     setlocale(LC_CTYPE, "Polish");
     char gender;
-    int wiek;
-    float weight, height;
+    int wiek, czas;
+    float weight, height, lossw, okres;
+
 
     printf("Podaj p³eæ (M/K): ");
     if (scanf(" %c", &gender) != 1) {
@@ -60,12 +91,28 @@ int main() {
         printf("B³¹d podczas wczytywania wagi.\n");
         return 1;
     }
-
+    printf("Ile chcesz straciæ kg (kg): ");
+    if (scanf("%f", &lossw) != 1) {
+        printf("B³¹d podczas wczytywania wagi.\n");
+        return 1;
+    }
+    printf("W jakim okresie chcesz straciæ wagê (dni): ");
+    if (scanf("%f", &okres) != 1) {
+        printf("B³¹d podczas wczytywania wagi.\n");
+        return 1;
+    }
+    printf("Na jaki okres chcesz diete (dni): ");
+    if (scanf("%d", &czas) != 1) {
+        printf("Dobrze podamy ci diete.\n");
+        return 1;
+    }
     printf("\nDane u¿ytkownika:\n");
     printf("P³eæ: %c\n", gender);
     printf("Wiek: %d lat\n", wiek);
     printf("Wzrost: %.1f cm\n", height);
     printf("Waga: %.1f kg\n", weight);
+    
+    generujJadlospis(czas);
 
     return 0;
 }
