@@ -12,14 +12,16 @@ static GtkWidget *tryb;
 static GtkWidget *tryb1;
 static GtkWidget *tryb2;
 static GtkWidget *tryb3;
+static GtkWidget *lose_weight, *lose_weight_res;
 static GtkWidget *window, *grid, *desc, *desc1, *button;
 
 typedef struct {
     GtkWidget *age_res;
     GtkWidget *weight_res;
     GtkWidget *height_res;
-    char *sex;
-    char *lifestyle;
+    GtkWidget *lose_weight_res;
+    int sex;
+    float lifestyle;
 } dane_struktury;
 
 void funkcj(GtkWidget *widget, gpointer data);
@@ -67,11 +69,19 @@ int main(int argc, char **argv) {
     tryb3 = gtk_check_button_new_with_label("Wysoka aktywnosc");
     gtk_grid_attach(GTK_GRID(grid), tryb3, 1, 8, 1, 1);
 
+    lose_weight = gtk_label_new("Ile chcesz stracić na wadze?");
+    gtk_grid_attach(GTK_GRID(grid), lose_weight, 0, 9, 1, 1);
+    lose_weight_res = gtk_entry_new();
+    gtk_grid_attach(GTK_GRID(grid), lose_weight_res, 1, 9, 1, 1);
+
+    
+
     dane_struktury *data = g_malloc(sizeof(dane_struktury));
     data->age_res = age_res;
     data->weight_res = weight_res;
     data->height_res = height_res;
-    data->sex = "0";
+    data->lose_weight_res = lose_weight_res;
+    data->sex = 0;
     g_signal_connect(man, "toggled", G_CALLBACK(button_toggle), data);
     g_signal_connect(woman, "toggled", G_CALLBACK(button_toggle), data);
     g_signal_connect(tryb, "toggled", G_CALLBACK(button_toggle), data);
@@ -83,7 +93,7 @@ int main(int argc, char **argv) {
 
 
     button = gtk_button_new_with_label("Wyślij dane");
-    gtk_grid_attach(GTK_GRID(grid), button, 1, 9, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), button, 1, 10, 1, 1);
     g_signal_connect(button, "clicked", G_CALLBACK(funkcj), data);
 
     gtk_widget_show_all(window);
@@ -92,23 +102,31 @@ int main(int argc, char **argv) {
 
 void button_toggle(GtkWidget *widget, gpointer data) {
     dane_struktury *data_p = (dane_struktury *) data;
-    if (widget == man) {data_p->sex = "M";}
+    if (widget == man) {data_p->sex = 5;}
 
-    if (widget == woman) {data_p->sex = "K";}
+    if (widget == woman) {data_p->sex = -161;}
 
-    if (widget == tryb) {data_p->lifestyle = "Siedzacy";}
+    if (widget == tryb) {data_p->lifestyle = 1.2;}
 
-    if (widget == tryb1) {data_p->lifestyle = "Niska aktywnosc";}
+    if (widget == tryb1) {data_p->lifestyle = 1.45;}
 
-    if (widget == tryb2) {data_p->lifestyle = "Srednia aktywnosc";}
+    if (widget == tryb2) {data_p->lifestyle = 1.65;}
 
-    if (widget == tryb3) {data_p->lifestyle = "Wysoka aktywnosc";}
+    if (widget == tryb3) {data_p->lifestyle = 1.86;}
 }
 
 void funkcj(GtkWidget *widget, gpointer data){
     dane_struktury *data_p = (dane_struktury *) data;
-    const gchar *wiek = gtk_entry_get_text(GTK_ENTRY(data_p->age_res));
-    const gchar *waga = gtk_entry_get_text(GTK_ENTRY(data_p->weight_res));
-    const gchar *wzrost = gtk_entry_get_text(GTK_ENTRY(data_p->height_res));
-    g_print("Wiek: %s \nWaga: %s \nWzrost: %s \nPłeć: %s \n Tryb zycia: %s", wiek, waga, wzrost, data_p->sex, data_p->lifestyle);
+    int wiek = atoi(gtk_entry_get_text(GTK_ENTRY(data_p->age_res)));
+    int waga = atoi(gtk_entry_get_text(GTK_ENTRY(data_p->weight_res))); 
+    int lose  = atoi(gtk_entry_get_text(GTK_ENTRY(data_p->lose_weight_res)));
+    int wzrost = atoi(gtk_entry_get_text(GTK_ENTRY(data_p->height_res)));
+    int ppm, breakfast, lunch, dinner, snacks;
+    ppm = (10*waga+6.25*wzrost-5*wiek+data_p->sex)*data_p->lifestyle;
+    breakfast = ppm*0.25;
+    lunch = ppm*0.4;
+    dinner = ppm*0.25;
+    snacks = ppm*0.1;
+
+    printf("Zapotrzebowanie kaloryczne: %d \nSniadanie: %d \nObiad: %d \nKolacja: %d \nPrzekąski: %d\n", ppm, breakfast, lunch, dinner, snacks);
 }
