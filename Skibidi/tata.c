@@ -58,14 +58,28 @@ void generujJadlospis(int czas) {
             ko.nazwa_posilku, ko.kcal, ko.bialko, ko.tluszcz, ko.wegle);
     }
 }
+enum Aktywnosc { SIEDZACY = 1, NISKI = 2, SREDNI = 3, WYSOKI = 4 };
+void PPM(char gender,float weight, float height, int wiek, enum Aktywnosc aktywnosc, float* kaloryka) {
+    float kaloryka;
+    float wsp_aktywnosci[] = { 0.0f, 1.2f, 1.375f, 1.55f, 1.725f };
+    if (gender == 'M') {
+        *kaloryka = (10 * weight) + (6.25 * height) - (5 * wiek) + 5;
+    }
+    if (gender = 'K') {
+        *kaloryka = (10 * weight) + (6.25 * height) - (5 * wiek) - 161;
+    }
+    printf("    Twoja Kaloryka bez wysi³ku: %.1f kcal\n",*kaloryka);
+    *kaloryka *= wsp_aktywnosci[aktywnosc];
+    printf("    Twoja Kaloryka z wysi³ku: %.1f kcal\n", *kaloryka);
 
-enum Aktywnosc { SIEDZACY = 1, NISKI, SREDNI, WYSOKI };
+}
+
 
 int main() {
     setlocale(LC_CTYPE, "Polish");
     char gender;
-    int wiek, czas;
-    float weight, height, lossw, okres;
+    int wiek, czas, wybor;
+    float weight, height, lossw, okres, dzienne_zapotrzebowanie;
 
 
     printf("Podaj p³eæ (M/K): ");
@@ -106,12 +120,19 @@ int main() {
         printf("Dobrze podamy ci diete.\n");
         return 1;
     }
+    printf("\nPodaj poziom aktywnoœci fizycznej:\n");
+    printf("1 - Siedz¹cy\n2 - Niski\n3 - Œredni\n4 - Wysoki\n");
+    printf("Wybór: ");
+    if (scanf("%d", &wybor) != 1 || wybor < 1 || wybor > 4) {
+        printf("B³¹d: nieprawid³owy poziom aktywnoœci.\n");
+        return 1;
+    }
     printf("\nDane u¿ytkownika:\n");
     printf("P³eæ: %c\n", gender);
     printf("Wiek: %d lat\n", wiek);
     printf("Wzrost: %.1f cm\n", height);
     printf("Waga: %.1f kg\n", weight);
-    
+    PPM(gender, weight, height, wiek, (enum Aktywnosc) wybor, &dzienne_zapotrzebowanie);
     generujJadlospis(czas);
 
     return 0;
