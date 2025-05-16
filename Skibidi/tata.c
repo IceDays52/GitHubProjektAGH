@@ -14,40 +14,50 @@ struct Posilek {
 struct Posilek sniadania[] = {
     {"Owsianka z owocami", 350, 10.5f, 8.2f, 55.0f},
     {"Jajecznica z warzywami", 300, 20.0f, 22.0f, 5.0f},
-    {"Jogurt naturalny z musli", 320, 15.0f, 10.0f, 40.0f}
+    {"Jogurt naturalny z musli", 320, 15.0f, 10.0f, 40.0f},
+    {"Omlet z serem i szynk¹", 450, 28.0f, 30.0f, 20.0f},
+    {"Kanapka z bekonem i jajkiem", 520, 25.0f, 35.0f, 45.0f},
+    {"Pancakes z syropem klonowym", 600, 10.0f, 20.0f, 90.0f},
+    {"Tosty francuskie z owocami", 480, 15.0f, 18.0f, 70.0f},
+    {"Burrito œniadaniowe z fasol¹", 550, 22.0f, 25.0f, 60.0f}
 };
 
 struct Posilek obiady[] = {
     {"Pierœ z kurczaka z ry¿em i warzywami", 500, 35.0f, 15.0f, 50.0f},
     {"£osoœ z kasz¹ i broku³ami", 550, 40.0f, 25.0f, 35.0f},
-    {"Gulasz warzywny z ciecierzyc¹", 480, 20.0f, 18.0f, 55.0f}
+    {"Gulasz warzywny z ciecierzyc¹", 480, 20.0f, 18.0f, 55.0f},
+    {"Spaghetti carbonara", 800, 30.0f, 45.0f, 90.0f},
+    {"Pizza pepperoni", 950, 35.0f, 50.0f, 105.0f},
+    {"Burger wo³owy z frytkami", 1200, 40.0f, 65.0f, 110.0f},
+    {"Schabowy z ziemniakami i surówk¹", 900, 45.0f, 40.0f, 75.0f},
+    {"Kurczak tikka masala z ry¿em", 700, 40.0f, 20.0f, 80.0f}
 };
 
 struct Posilek kolacje[] = {
     {"Kanapki z jajkiem i warzywami", 300, 15.0f, 12.0f, 30.0f},
     {"Sa³atka z tuñczykiem", 320, 25.0f, 15.0f, 10.0f},
-    {"Zupa krem z dyni z grzankami", 280, 10.0f, 10.0f, 35.0f}
+    {"Zupa krem z dyni z grzankami", 280, 10.0f, 10.0f, 35.0f},
+    {"Zapiekanka makaronowa z serem", 600, 25.0f, 30.0f, 70.0f},
+    {"Grillowany ser z boczkiem", 550, 20.0f, 40.0f, 25.0f},
+    {"Placki ziemniaczane ze œmietan¹", 500, 12.0f, 25.0f, 55.0f},
+    {"Chili con carne z fasol¹", 700, 35.0f, 30.0f, 80.0f},
+    {"Wrap z kurczakiem i sosem czosnkowym", 600, 30.0f, 25.0f, 60.0f}
 };
 
 void generujJadlospis(int czas) {
-    srand(time(NULL));  
+    srand(time(NULL));
 
     printf("\nZalecany jad³ospis na %d dni:\n", czas);
 
     for (int i = 1; i <= czas; i++) {
         printf("\nDzieñ %d:\n", i);
-
-       
         int i_sniadanie = rand() % (sizeof(sniadania) / sizeof(sniadania[0]));
         int i_obiad = rand() % (sizeof(obiady) / sizeof(obiady[0]));
         int i_kolacja = rand() % (sizeof(kolacje) / sizeof(kolacje[0]));
-
-       
         struct Posilek sn = sniadania[i_sniadanie];
         struct Posilek ob = obiady[i_obiad];
         struct Posilek ko = kolacje[i_kolacja];
-
-        
+        int suma_kcal = sn.kcal + ob.kcal + ko.kcal;
         printf("  Œniadanie: %s (kcal: %d, bia³ko: %.1fg, t³uszcz: %.1fg, wêgle: %.1fg)\n",
             sn.nazwa_posilku, sn.kcal, sn.bialko, sn.tluszcz, sn.wegle);
 
@@ -56,6 +66,9 @@ void generujJadlospis(int czas) {
 
         printf("  Kolacja: %s (kcal: %d, bia³ko: %.1fg, t³uszcz: %.1fg, wêgle: %.1fg)\n",
             ko.nazwa_posilku, ko.kcal, ko.bialko, ko.tluszcz, ko.wegle);
+
+
+        printf("  Ca³kowita kalorycznoœæ na dzieñ %d: %d kcal\n", i, suma_kcal);
     }
 }
 enum Aktywnosc { SIEDZACY = 1, NISKI = 2, SREDNI = 3, WYSOKI = 4 };
@@ -116,7 +129,7 @@ void ocenPlanUtraty(float kg_do_zmiany, float dni, float dzienne_zapotrzebowanie
     const float kcal_na_kg = 7700.0f;
     float dzienny_deficyt = (kg_do_zmiany * kcal_na_kg) / dni;
 
-    printf("\n      Ocena planu %s masy     \n", (tryb == SPADEK) ? "utraty" : "przyrostu");
+    printf("\n      Ocena planu %s masy \n", (tryb == SPADEK) ? "utraty" : "przyrostu");
     printf("Chcesz %s %.2f kg w %.0f dni.\n", (tryb == SPADEK) ? "straciæ" : "przytyæ", kg_do_zmiany, dni);
     printf("To wymaga dziennej zmiany kalorii o: %.0f kcal.\n", dzienny_deficyt);
 
