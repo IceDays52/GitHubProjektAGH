@@ -67,7 +67,7 @@ Dzień 1:
 
 ......
 ```
-## Wymagania
+#### Wymagania
 Kompilator C
 #### Autorzy
 Arkadiusz Ciuła, 
