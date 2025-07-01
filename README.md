@@ -64,6 +64,8 @@ Dzień 1:
   Obiad: Pizza pepperoni (kcal: 950, białko: 35.0g, tłuszcz: 50.0g, węgle: 105.0g)  
   Kolacja: Sałatka z tuńczykiem (kcal: 320, białko: 25.0g, tłuszcz: 15.0g, węgle: 10.0g)  
   Całkowita kaloryczność na dzień 1: 1570 kcal
+
+......
 ```
 
 #### Autorzy
