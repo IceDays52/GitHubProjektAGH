@@ -10,8 +10,6 @@ Program w języku C, który pomaga obliczyć Twoje dzienne zapotrzebowanie kalor
 
 Dodatkowo ocenia, czy wybrany plan zmian wagi jest zdrowy – np. ostrzega, jeśli deficyt kaloryczny jest zbyt duży – oraz generuje przykładowy jadłospis na wybraną liczbę dni.
 
-Program działa w terminalu i nie wymaga żadnych zewnętrznych bibliotek.
-
 ---
 
 ## Przykład działania
