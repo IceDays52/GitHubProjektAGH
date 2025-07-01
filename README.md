@@ -67,7 +67,8 @@ Dzień 1:
 
 ......
 ```
-
+## Wymagania
+Kompilator C
 #### Autorzy
 Arkadiusz Ciuła, 
 Mateusz Turakiewicz
