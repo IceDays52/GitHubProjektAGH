@@ -8,7 +8,7 @@ Program w języku C, który pomaga obliczyć Twoje dzienne zapotrzebowanie kalor
 - poziomu aktywności fizycznej
 - celu (utrzymanie, redukcja, masa, zdrowa dieta)
 
-Dodatkowo ocenia, czy wybrany plan zmian wagi jest zdrowy – np. ostrzega, jeśli deficyt kaloryczny jest zbyt duży – oraz generuje przykładowy jadłospis na wybraną liczbę dni.
+Dodatkowo ocenia, czy wybrany plan zmian wagi jest zdrowy - np. ostrzega, jeśli deficyt kaloryczny jest zbyt duży – oraz generuje przykładowy jadłospis na wybraną liczbę dni.
 
 ---
 
